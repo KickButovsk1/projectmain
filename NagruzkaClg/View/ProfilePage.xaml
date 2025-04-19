@@ -1,0 +1,80 @@
+<Page x:Class="NagruzkaClg.View.ProfilePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:NagruzkaClg.View"
+      mc:Ignorable="d"
+      Title="ProfilePage" Height="1080" Width="1920">
+    <Grid Background="Black">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Левая часть с информацией о преподавателе -->
+        <Border Grid.Column="0" Margin="10" BorderBrush="LightGray" BorderThickness="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Фото преподавателя -->
+                <Border Grid.Row="0" Width="350" Height="500" Margin="0 80 0 0" BorderBrush="White" BorderThickness="1">
+                    <Image/>
+                </Border>
+
+                <!-- ФИО преподавателя -->
+                <TextBlock Grid.Row="1" Text="Никита Стрельцов"
+                           Margin="10" FontSize="26" FontWeight="Bold"
+                           HorizontalAlignment="Center" Foreground="White" TextAlignment="Center"/>
+
+                <!-- Нагрузка -->
+                <StackPanel Grid.Row="2" Orientation="Vertical" HorizontalAlignment="Center" Margin="10">
+                    <TextBlock Foreground="White" Text="Нагрузка в этом году" FontSize="20" FontWeight="Bold"/>
+                    <TextBox Width="300" Height="50" Margin="0 10 0 0"/>
+                </StackPanel>
+
+                <!-- Кнопки -->
+                <StackPanel Grid.Row="4" Orientation="Vertical" HorizontalAlignment="Center" Margin="10">
+                    <Button FontSize="20" Foreground="White" Background="Black" BorderBrush="White" Content="Добавить" Height="50" Width="200" Margin="8" />
+                    <Button FontSize="20" Foreground="White" Background="Black" BorderBrush="White" Content="Удалить" Height="50" Width="200" Margin="8" />
+                    <Button FontSize="20" Foreground="White" Background="Black" BorderBrush="White" Content="Редактировать" Height="50" Width="200" Margin="8" />
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Правая часть со списком преподавателей -->
+        <Border Grid.Column="1" Margin="10" BorderBrush="LightGray" BorderThickness="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Text="СПИСОК ПРЕПОДАВАТЕЛЕЙ" 
+                           FontSize="24" Foreground="White" FontWeight="Bold" Margin="10"
+                           HorizontalAlignment="Center"/>
+
+                <!-- Список преподавателей -->
+                <ListView Background="Black" Grid.Row="1" ItemsSource="{Binding Teachers}" 
+                          SelectedItem="{Binding SelectedTeacher}"
+                          Margin="10 0 10 10">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding SecondName}" Width="200"/>
+                            <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Name}" Width="200"/>
+                            <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding LastName}" Width="200"/>
+                            <GridViewColumn Header="Нагрузка" DisplayMemberBinding="{Binding Workload}" Width="200"/>
+                            <GridViewColumn Header="Фото" DisplayMemberBinding="{Binding Image}" Width="425"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>
