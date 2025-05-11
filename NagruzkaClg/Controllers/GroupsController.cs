@@ -1,8 +1,4 @@
-using System.ComponentModel.Design;
-using System.Text.RegularExpressions;
 using Microsoft.EntityFrameworkCore;
-using NagruzkaClg;
-using NagruzkaClg.Model;
 using NagruzkaClg.Model.Entities;
 
 namespace NagruzkaClg.Controllers;
@@ -34,12 +30,12 @@ public class GroupsController
             try
             {
                 var group = await _context.Groups.FindAsync(id);
+                
                 if (group == null)
                 {
                     throw new KeyNotFoundException($"Группа с ID {id} не найдена");
                 }
-            
-
+                
                 _context.Groups.Remove(group);
                 await _context.SaveChangesAsync();
             }
@@ -80,18 +76,20 @@ public class GroupsController
                 }
 
                 group.Name = name;
-                group.Specialize.Id = specializeId;
-                group.FreeOrSpend.Id = freeOrSpendId;
-                group.ObuchenieForm.Id = obuchenieFormId;
-                group.Course.Id = courseId;
-                
-                
-                group.Nagruzka.Clear();
-                foreach (var nagruzka in nagruzki)
-                {
-                    group.Nagruzka.Add(nagruzka);
-                }
+                group.Specialize = await _context.Specializes.FindAsync(specializeId);
+                group.FreeOrSpend = await _context.FreeOrSpend.FindAsync(freeOrSpendId);
+                group.ObuchenieForm = await _context.ObuchenieForm.FindAsync(obuchenieFormId);
+                group.Course = await _context.Courses.FindAsync(courseId);
 
+                if (nagruzki != null)
+                {
+                    group.Nagruzka.Clear();
+                    foreach (var nagruzka in nagruzki)
+                    {
+                        group.Nagruzka.Add(nagruzka);
+                    }
+                }
+            
                 await _context.SaveChangesAsync();
             }
             catch (Exception ex)
@@ -104,16 +102,24 @@ public class GroupsController
         {
             try
             {
-                return await _context.Groups
-                    .AsNoTracking()
-                    .AsSplitQuery()
-                    .Include(x => x.Specialize)
-                    .Include(x => x.FreeOrSpend)
-                    .Include(x => x.ObuchenieForm)
-                    .Include(x => x.Course)
-                    .Include(x => x.Nagruzka)
-                    .OrderBy(x => x.Name)
-                    .ToListAsync();
+                if (_context == null)
+                {
+                    throw new Exception("DbContext не инициализирован");
+                }
+                else
+                {
+                    return await _context.Groups
+                        .AsNoTracking()
+                        .AsSplitQuery()
+                        .Include(x => x.Specialize)
+                        .Include(x => x.FreeOrSpend)
+                        .Include(x => x.ObuchenieForm)
+                        .Include(x => x.Course)
+                        // .Include(x => x.Nagruzka)
+                        .OrderBy(x => x.Name)
+                        .ToListAsync();
+                }
+               
             }
             catch (Exception e)
             {

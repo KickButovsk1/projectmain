@@ -1,10 +1,14 @@
 using System.Windows;
 using System.Windows.Controls;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Win32;
+using NagruzkaClg.Model.Entities;
 
 namespace NagruzkaClg.View;
 
 public partial class MenuPage : Page
 {
+    
     public MenuPage()
     {
         InitializeComponent();
@@ -32,6 +36,8 @@ public partial class MenuPage : Page
 
     private void GroupsButton_OnClick(object sender, RoutedEventArgs e)
     {
-        NavigationService.Navigate(new GroupsPage());
+        var page = ((App)Application.Current).ServiceProvider.GetRequiredService<GroupsPage>();
+        NavigationService.Navigate(page);
     }
+    
 }

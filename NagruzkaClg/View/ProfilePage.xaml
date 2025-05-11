@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:NagruzkaClg.View"
       mc:Ignorable="d"
-      Title="ProfilePage" Height="1080" Width="1920">
+      Title="ProfilePage" Height="1000" Width="1920">
     <Grid Background="Black">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -24,7 +24,7 @@
                 </Grid.RowDefinitions>
 
                 <!-- Фото преподавателя -->
-                <Border Grid.Row="0" Width="350" Height="500" Margin="0 80 0 0" BorderBrush="White" BorderThickness="1">
+                <Border Grid.Row="0" Width="350" Height="500" Margin="0 30 0 0" BorderBrush="White" BorderThickness="1">
                     <Image/>
                 </Border>
 
@@ -69,7 +69,7 @@
                             <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding SecondName}" Width="200"/>
                             <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Name}" Width="200"/>
                             <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding LastName}" Width="200"/>
-                            <GridViewColumn Header="Нагрузка" DisplayMemberBinding="{Binding Workload}" Width="200"/>
+                            <GridViewColumn Header="Нагрузка" DisplayMemberBinding="{Binding Loads}" Width="200"/>
                             <GridViewColumn Header="Фото" DisplayMemberBinding="{Binding Image}" Width="425"/>
                         </GridView>
                     </ListView.View>

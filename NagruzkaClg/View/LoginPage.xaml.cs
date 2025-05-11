@@ -1,5 +1,6 @@
 using System.Windows;
 using System.Windows.Controls;
+using Microsoft.Extensions.DependencyInjection;
 using NagruzkaClg.Controllers;
 using NagruzkaClg.Model.Entities;
 
@@ -9,11 +10,12 @@ public partial class LoginPage : Page
 {
   
     private readonly UsersController _user;
-    public LoginPage(UsersController user)
+    private readonly IServiceProvider _serviceProvider;
+    public LoginPage(UsersController user, IServiceProvider serviceProvider)
     {
-        _user = user;
+        _serviceProvider =  serviceProvider;
+        _user = user; 
         InitializeComponent();
-        
     }
     
     private void LoginButton_OnClick(object sender, RoutedEventArgs e)
@@ -25,7 +27,8 @@ public partial class LoginPage : Page
         
             if (_user.CheckAuth(login, password))
             {
-                NavigationService.Navigate(new MenuPage());
+                var menupage = _serviceProvider.GetRequiredService<MenuPage>();
+                NavigationService.Navigate(menupage);
             }
         }
         catch (Exception ex)

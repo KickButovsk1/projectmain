@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:NagruzkaClg.View"
       mc:Ignorable="d"
-      Title="Авторизация" Height="1080" Width="1920">
+      Title="Авторизация" Height="800" Width="1400">
     <Grid Background="Black">
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock  Foreground="White" FontSize="18" Margin="0 0 0 5">Логин</TextBlock>

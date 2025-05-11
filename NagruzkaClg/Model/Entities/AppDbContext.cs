@@ -39,7 +39,7 @@ public class AppDbContext:DbContext
         if (!optionsBuilder.IsConfigured)
         {
             optionsBuilder.UseSqlServer(
-                @"Server=(localdb)\MSSQLLocalDB;Database=NagruzkaCollege;Trusted_Connection=True;",
+                @"Server=(localdb)\MSSQLLocalDB;Database=ProjectDB;Trusted_Connection=True;",
                 options => 
                 {
                     options.EnableRetryOnFailure(); 

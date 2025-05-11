@@ -11,7 +11,7 @@ using NagruzkaClg.Model.Entities;
 namespace NagruzkaClg.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250419114746_InitialTest")]
+    [Migration("20250419160443_InitialTest")]
     partial class InitialTest
     {
         /// <inheritdoc />

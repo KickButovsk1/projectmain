@@ -277,3 +277,9 @@ C:\Users\user\Desktop\project-main\NagruzkaClg\obj\Debug\net8.0-windows\Nagruzka
 C:\Users\user\Desktop\project-main\NagruzkaClg\obj\Debug\net8.0-windows\NagruzkaClg.dll
 C:\Users\user\Desktop\project-main\NagruzkaClg\obj\Debug\net8.0-windows\refint\NagruzkaClg.dll
 C:\Users\user\Desktop\project-main\NagruzkaClg\obj\Debug\net8.0-windows\NagruzkaClg.pdb
+C:\Users\Comp\RiderProjects\project-main\NagruzkaClg\obj\Debug\net8.0-windows\NagruzkaClg.sourcelink.json
+C:\Users\Comp\RiderProjects\project-main\NagruzkaClg\obj\Debug\net8.0-windows\View\AddGroupPage.g.cs
+C:\Users\Comp\RiderProjects\project-main\NagruzkaClg\obj\Debug\net8.0-windows\View\AddGroupPage.baml
+C:\Users\Comp\RiderProjects\project-main\NagruzkaClg\obj\Debug\net8.0-windows\View\EditGroupPage.g.cs
+C:\Users\Comp\RiderProjects\project-main\NagruzkaClg\obj\Debug\net8.0-windows\View\EditGroupPage.baml
+C:\Users\Comp\RiderProjects\project-main\NagruzkaClg\bin\Debug\net8.0-windows\CommunityToolkit.Mvvm.dll

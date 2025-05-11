@@ -1,12 +1,53 @@
 <Page x:Class="NagruzkaClg.View.PlanPage"
+      Background="Black"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:NagruzkaClg.View"
       mc:Ignorable="d"
-      Title="PlanPage" Height="1080" Width="1920">
-    <Grid>
-        
+      Title="PlanPage" Height="1000" Width="1920">
+    <Grid Margin="10" Background="Black">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Верхняя панель с заголовком и кнопками -->
+        <Border Grid.Row="0" Background="Black"  Padding="10">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <!-- Заголовок -->
+                <TextBlock Text="Поиск" Foreground="White" VerticalAlignment="Center" Margin="0 0 15 0" FontSize="25" FontWeight="Bold"/>
+                <TextBox FontSize="18" FontWeight="Bold" Background="Black" Foreground="White" Height="50" Width="200" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,20,0"/>
+                
+                <!-- Кнопки -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button FontSize="20" Foreground="White" Background="Black" BorderBrush="White" Content="Добавить" Height="50" Width="200" Margin="8" />
+                    <Button FontSize="20" Foreground="White" Background="Black" BorderBrush="White" Content="Удалить" Height="50" Width="200" Margin="8" />
+                    <Button FontSize="20" Foreground="White" Background="Black" BorderBrush="White" Content="Редактировать" Height="50" Width="200" Margin="8" />
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- Список -->
+        <Border Grid.Row="1" Margin="15" Background="Black"
+                BorderBrush="#FFDDDDDD" BorderThickness="1">
+            <Grid>
+                <!-- Текст-заглушка -->
+                <TextBlock Text="ЗДЕСЬ БУДЕТ СПИСОК" HorizontalAlignment="Center" VerticalAlignment="Center"
+                           Foreground="Gray" FontSize="16"/>
+                
+                <!-- Реальный список (раскомментировать когда будет готов) -->
+                <!--
+                <ListView ItemsSource="{Binding Items}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Name}" Width="200"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                -->
+            </Grid>
+        </Border>
     </Grid>
 </Page>

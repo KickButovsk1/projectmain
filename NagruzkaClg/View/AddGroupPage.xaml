@@ -5,8 +5,25 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:NagruzkaClg.View"
       mc:Ignorable="d"
-      Title="AddGroupPage" Height="450" Width="800">
+      Title="AddGroupPage" Height="450" Width="800"
+      Loaded="Page_Loaded">
     <Grid>
+
         
+        <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5 0 0 0" Width="500">
+            <TextBlock Foreground="White" Margin="0 0 0 3">Имя группы:</TextBlock>
+            <TextBox x:Name="NameTextBox" Margin="0 0 0 5"/>
+            <TextBlock Foreground="White" Margin="0 3 0 3">Специальность:</TextBlock>
+            <ComboBox x:Name="SpecializationComboBox" Margin="0 0 0 5" SelectedValuePath="Id" DisplayMemberPath="Name"/>
+            <TextBlock Foreground="White" Margin="0 3 0 3">Платная или бесплатная:</TextBlock>
+            <ComboBox x:Name="FOSComboBox" Margin="0 0 0 5" SelectedValuePath="Id" DisplayMemberPath="FreeSpend"/>
+            <TextBlock Foreground="White" Margin="0 3 0 3">Форма обучения:</TextBlock>
+            <ComboBox x:Name="ObuchenieFormComboBox" Margin="0 0 0 5" SelectedValuePath="Id" DisplayMemberPath="Form">
+            </ComboBox>
+            <TextBlock Foreground="White" Margin="0 3 0 3">Номер курса:</TextBlock>
+            <ComboBox x:Name="CourseComboBox" SelectedValuePath="Id" DisplayMemberPath="CourseLevel"/>
+        </StackPanel>
+        
+        <Button x:Name="AddButton" Click="AddButton_OnClick" Grid.ColumnSpan="2" Margin="0 0 0 50" Width="250" VerticalAlignment="Bottom">Добавить</Button>
     </Grid>
 </Page>

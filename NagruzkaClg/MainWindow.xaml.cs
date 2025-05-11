@@ -12,7 +12,6 @@ namespace NagruzkaClg
         {
             _serviceProvider = serviceProvider;
             InitializeComponent();
-            
             // Загружаем стартовую страницу
             LoadLoginPage();
         }
@@ -21,6 +20,14 @@ namespace NagruzkaClg
         {
             var loginPage = _serviceProvider.GetRequiredService<LoginPage>();
             MainFrame.Navigate(loginPage);
+        }
+
+        private void BackButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (MainFrame.CanGoBack)
+            {
+                MainFrame.GoBack();
+            }
         }
     }
 }

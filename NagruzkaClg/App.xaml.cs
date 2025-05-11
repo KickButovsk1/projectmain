@@ -1,9 +1,11 @@
 ﻿using System;
+using System.IO;
 using System.Windows;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using NagruzkaClg.Controllers;
 using NagruzkaClg.Model.Entities;
+using NagruzkaClg.Services;
 using NagruzkaClg.View;
 
 namespace NagruzkaClg
@@ -12,15 +14,17 @@ namespace NagruzkaClg
     {
         public  IServiceProvider ServiceProvider { get; private set; }
 
-        protected override void OnStartup(StartupEventArgs e)
+        protected override async void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+                
+            string backupDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "NagruzkaClg", "Backups");
+            Directory.CreateDirectory(backupDir);
+            string backupFile = Path.Combine(backupDir, "backup.json");
 
-            // Создаем контейнер
             var services = new ServiceCollection();
             ConfigureServices(services);
-
-            // Собираем провайдер
+            
             ServiceProvider = services.BuildServiceProvider();
 
             DispatcherUnhandledException += (s, ex) => 
@@ -28,28 +32,33 @@ namespace NagruzkaClg
                 MessageBox.Show($"Ошибка: {ex.Exception.Message}");
                 ex.Handled = true;
             };
-            // Запускаем главное окно через DI
+            
             var mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
             mainWindow.Show();
+            mainWindow.LoadLoginPage();
         }
 
         private void ConfigureServices(IServiceCollection services)
         {
-            // Регистрируем главное окно (Singleton, чтобы не создавалось повторно)
             services.AddSingleton<MainWindow>();
-
-            // Регистрируем страницы
+            
             services.AddTransient<LoginPage>();
-
-            // Регистрируем контроллеры
+            services.AddTransient<AddGroupPage>();
+            services.AddTransient<EditGroupPage>();
+            services.AddTransient<GroupsPage>();
+            services.AddTransient<MenuPage>();
+            services.AddTransient<NagruzkaPage>();
+            services.AddTransient<PlanPage>();
+            services.AddTransient<ProfilePage>();
+            services.AddTransient<SpecializationsPage>();
+            
             services.AddTransient<GroupsController>();
             services.AddTransient<SpecializeController>();
             services.AddTransient<TeacherController>();
             services.AddTransient<UsersController>();
-
-            // Регистрируем контекст базы данных
+            
             services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=NagruzkaCollege;Trusted_Connection=True;"));
+                options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=ProjectDB;Trusted_Connection=True;"));
         }
     }
 }

@@ -1,4 +1,3 @@
-using System.Windows;
 using Microsoft.EntityFrameworkCore;
 using NagruzkaClg.Model.Entities;
 
